@@ -23,7 +23,7 @@ const ExpenseForm = (props) => {
 
         const expenseData = {
             title: addTitle,
-            amount: addAmount,
+            amount: +addAmount,
             date: new Date(addDate)
         };
 
@@ -33,6 +33,14 @@ const ExpenseForm = (props) => {
         setAddDate("");
 
     }
+
+    const closeForm = (event) => {
+        props.closeIt(event)
+    }
+
+   
+
+   
 
     return (
         <form onSubmit={submitHandler}>
@@ -62,12 +70,14 @@ const ExpenseForm = (props) => {
                     onChange={addDateHandler}
                     value={addDate}
                     min="2021-12-13"
-                    min="2022-12-13"
+                    max="2022-12-13"
                     />
                 </div>
             </div>
             <div className="new-expense__actions">
                     <button type="submit">Add Expense</button>
+                    <button type="button" onClick={closeForm}>Cancel</button>
+                    {/* Max's way, onClick={props.onCancel} */}
                 </div>
         </form>
     )
